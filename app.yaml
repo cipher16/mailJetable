@@ -1,0 +1,23 @@
+application: mail-jetable
+version: 2
+runtime: python
+api_version: 1
+
+inbound_services:
+- mail
+
+handlers:
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt
+- url: /stylesheets
+  static_dir: stylesheets
+- url: /js
+  static_dir: js
+- url: /_ah/mail/.+ 
+  script: mail.py
+- url: /.*
+  script: mail.py
