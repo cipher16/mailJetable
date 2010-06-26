@@ -1,5 +1,5 @@
 application: mail-jetable
-version: 2
+version: 3
 runtime: python
 api_version: 1
 
@@ -13,10 +13,8 @@ handlers:
 - url: /robots.txt
   static_files: robots.txt
   upload: robots.txt
-- url: /stylesheets
-  static_dir: stylesheets
-- url: /js
-  static_dir: js
+- url: /Statics
+  static_dir: Statics
 - url: /_ah/mail/.+ 
   script: mail.py
 - url: /.*
