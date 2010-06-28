@@ -15,6 +15,7 @@
 	width: 960px;
 	background-color:EBE2CA;
 	-moz-border-radius: 5px; -webkit-border-radius: 5px;
+	font-size:11px;
 }
 
 /* Grid >> Global
@@ -387,7 +388,16 @@ body {
 }
 
 .footer{
-  background-color:#CECECE;
+  background-color:#2B2929;
+  color:#940303;
+  font-weight:bolder;
+  padding:5px;
+  -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  margin-top:15px;
+}
+
+.footer a{
+  color:#940303;	
 }
 
 .mail_form{
@@ -418,4 +428,12 @@ hr{
 
 h6 {
   font-weight:normal;
+}
+
+h1 {
+  background-color:#2B2929;
+  color:#940303;
+  font-weight:bolder;
+  padding:5px;
+  -moz-border-radius: 15px; -webkit-border-radius: 15px;
 }
