@@ -13,7 +13,8 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 960px;
-	background-color:white;
+	background-color:EBE2CA;
+	-moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 
 /* Grid >> Global
@@ -349,7 +350,7 @@ body {
   margin-top: 2px;
   padding:2px;
   -moz-border-radius: 5px; -webkit-border-radius: 5px;
-  border: 1px solid #000;
+  border: 1px solid #2B2929;
   height: 40px;
 }
 
@@ -359,7 +360,7 @@ body {
 
 .body {
   -moz-border-radius: 5px; -webkit-border-radius: 5px;
-  border: 1px solid #000;
+  border: 1px solid #2B2929;
 }
 
 .de {
@@ -391,5 +392,30 @@ body {
 
 .mail_form{
   -moz-border-radius: 5px; -webkit-border-radius: 5px;
-  border: 1px solid #000;
+  border: 1px solid #2B2929;
+}
+
+.danger{
+  background-color:940303;color:EBE2CA;font-weight:bolder;
+  -moz-border-radius: 5px; -webkit-border-radius: 5px;
+  border: 1px solid #2B2929;
+}
+
+hr{
+  width:90%;
+  -moz-border-radius: 5px; -webkit-border-radius: 5px;
+  border: 1px solid #2B2929;
+}
+
+.messageInfo{
+  -moz-border-radius: 5px; -webkit-border-radius: 5px;
+  border: 1px solid #2B2929;
+  text-align:center;
+  padding:10px;
+  background-color: #940303;
+  color:#EBE2CA;
+}
+
+h6 {
+  font-weight:normal;
 }

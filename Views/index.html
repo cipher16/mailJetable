@@ -6,7 +6,7 @@
 	<body>
 		<div class="container_12 grid_12" style="position: absolute;margin-left:-480px;left:50%">
 			<div class="grid_12" style="text-align:center"><h1>Cr&eacute;ation d'adresses mails jetables</h1></div>
-			<div class="grid_6" style="text-align:center">
+			<div class="grid_6" style="text-align:right">
 				Le but de ce service est de vous fournir une adresse mail qui vous permettra de recevoir des mails sans d&eacute;voiler votre
 				v&eacute;ritable adresse mail.
 			</div>
@@ -15,10 +15,11 @@
 				l'adresse mail sera valide. 
 			</div>
 			<div class="grid_12">&nbsp;</div>
+			<hr />
 			<div class="grid_12" style="text-align:center">
 				Cette adresse mail sera de la forme : votre_pseudo@mail-jetable.appspotmail.com.<br /><br />
 				Vous pourrez ainsi vous inscrire sur des forums, des jeux, sans vous soucier du spams que vous pourrez recevoir.<br /><br />
-				<div style="background-color:red;color:white;font-weight:bolder">Attention, n'importe qui peut acceder &agrave; vos mails en connaissant votre pseudo, N'utilisez ce service que pour recevoir des mails de fa&ccedil;on TEMPORAIRE et n'oubliez pas de supprimer les mails lus.<br />Il se peut que vos mails soient vides (dans ce cas, il s'agit d'un probl&egrave;me d'encodage)</div>
+				<div class="danger">Attention, n'importe qui peut acceder &agrave; vos mails en connaissant votre pseudo, N'utilisez ce service que pour recevoir des mails de fa&ccedil;on TEMPORAIRE et n'oubliez pas de supprimer les mails lus.<br />Il se peut que vos mails soient vides (dans ce cas, il s'agit d'un probl&egrave;me d'encodage)</div>
 			</div>
 			<div class="grid_12">&nbsp;</div>
 			<div class="grid_2">&nbsp;</div>
@@ -28,28 +29,31 @@
 					<div>
 						Dur&eacute;e de validit&eacute; : 
 						<select name="duration">
-							<option value="30">30</option>
-							<option value="60">60</option>
-							<option value="180">180</option>
-							<option value="360">360</option>
-							<option value="1440">1440</option>
-							<option value="10080">10080</option>
+							<option value="30">30 minutes</option>
+							<option value="60">1 heures</option>
+							<option value="180">3 heures</option>
+							<option value="360">5 heures</option>
+							<option value="1440">1 journée</option>
+							<option value="10080">1 semaine</option>
 						</select>
-						minutes
+						
 					</div>
 					<div><input type="submit" value="Cr&eacute;er l'adresse adresse mail et acc&eacute;der au compte"></div>
 				</form>
 			</div>
 			<div class="grid_12">&nbsp;</div>
-			<div class="grid_12">
+			<div class="grid_12" style="text-align:center;">
 				Ce service est juste un concept ... pour apprendre &agrave; d&eacute;velopper des applications pour l'appengine de google. Il est fournit en l'&eacute;tat.
-				Et peut &ecirc;tre supprimer sans pr&eacute;avis.<br />Les mails sont purement et simplement supprim&eacute;es de la base de donn&eacute;s une fois le compte expir&eacute;s.
-				Il ne peuvent donc pas &ecirc;tre r&eacute;cup&eacute;r&eacute;, sauf si le service de mail appengine de google conserve les mails re&ccedil;us, dans ce cas, contactez Google ;).<br /><br />
+				Et peut &ecirc;tre supprimer sans pr&eacute;avis.<br /><br />
+				<b>ATTENTION : Les mails sont purement et simplement supprim&eacute;es de la base de donn&eacute;s une fois la durée du compte expir&eacute;es.</b><br /><br />
+				Ils ne peuvent donc pas &ecirc;tre r&eacute;cup&eacute;r&eacute;, sauf si le service de mail appengine de google conserve les mails re&ccedil;us, dans ce cas, contactez Google ;).<br /><br />
 				Pour acc&eacute;der/modifier le code source de l'application : <a href="http://github.com/cipher16/mailJetable">le GitHub</a>
 			</div>
 			<div class="grid_12">&nbsp;</div>
 			
 			<div class="grid_12 footer" style="text-align:center">&copy; 2010 Grigis Gaetan - <a href="http://blog.gaetan-grigis.eu">LoupZeur</a></div>
 		</div>
+		<br /><br />
+		<div>&nbsp;</div>
 	</body>
 </html>

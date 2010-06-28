@@ -17,7 +17,11 @@
 	</head>
 	<body>
 <div class="container_12 grid_12" style="position: absolute;margin-left:-480px;left:50%">
-	<div class="grid_12" style="text-align:center"><h1>Visualisation des mails re&ccedil;u</h1> <h4>({{owner|escape}}@mail-jetable.appspotmail.com)</h4></div>
+	<div class="grid_12" style="text-align:center">
+	<h1>Visualisation des mails re&ccedil;us</h1>
+	<h4>({{owner|escape}}@mail-jetable.appspotmail.com)</h4>
+	<h6>Compte crée le : {{owdat.date}}, expire le : {{owdat.expiration}}.</h6>
+	</div>
 	<div id="nextMessages"></div>
      {% if mails%}
     {% for mail in mails %}
@@ -32,7 +36,8 @@
 	</div>
     {% endfor %}
     {% else %}
-<div class="grid_5 prefix_4" style="text-align:center">Vous n'avez pas encore re&ccedil;u de mails.<br />Vous pouvez rafraichir cette page en appuyant sur F5.<br /><br />Sinon, les donn&eacute;es sont rafraichies toutes les 5 secondes.</div>
+    <div class="grid_3">&nbsp;</div>
+	<div class="grid_6 messageInfo">Vous n'avez pas encore re&ccedil;u de mails.<br />Vous pouvez rafraichir cette page en appuyant sur F5.<br /><br />Sinon, les donn&eacute;es sont rafraichies toutes les 5 secondes.<br /><br />Rappel : Une fois le compte expiré, vous ne serez plus en mesure de recevoir de mail!</div>
     {%endif%}
     
 	<div class="grid_12">&nbsp;</div>
