@@ -1,0 +1,4 @@
+cron:
+- description: Nettoyage des mails et logins
+  url: /clean
+  schedule: every 30 minutes
