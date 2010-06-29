@@ -1,9 +1,6 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
-# MODELS
-from Models.MailOwner import MailOwner
-from Models.MailReceived import MailReceived
 # CONTROLLERS
 from Controllers.MainPage import MainPage
 from Controllers.DisplayContent import DisplayContent
