@@ -1,6 +1,7 @@
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from django.utils import simplejson
+import datetime
 
 class DisplayContent(webapp.RequestHandler):
     def get(self):
@@ -36,6 +37,16 @@ class DisplayContent(webapp.RequestHandler):
                     self.redirect("/displayMails?mail="+owner)
                 else:
                     self.redirect("/")
+        elif type == "expiration":
+            #in case of someone trying to test all pseudo to retrieve mails, check IP
+            owner = self.request.get('owner')
+            if owner:
+                results = db.GqlQuery("SELECT * FROM MailOwner WHERE name = :1 and ip = :2 and expiration > :3",owner,self.request.remote_addr,datetime.datetime.now()).fetch(1)
+                if not results:
+                    jsonArr = ['false']#account valid and authorized
+                else:
+                    jsonArr = ['true']
+            self.response.out.write(simplejson.dumps(jsonArr))
         elif type == "json":#in case we don't have id, we can have new mails
             owner = self.request.get('owner')
             results = db.GqlQuery("SELECT * FROM MailReceived WHERE owner = :1 ORDER BY date ASC",owner)

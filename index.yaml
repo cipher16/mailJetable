@@ -12,6 +12,18 @@ indexes:
 
 - kind: MailOwner
   properties:
+  - name: ip
+  - name: name
+  - name: expiration
+
+- kind: MailOwner
+  properties:
+  - name: ip
+  - name: pseudo
+  - name: expiration
+
+- kind: MailOwner
+  properties:
   - name: name
   - name: date
     direction: desc

@@ -19,28 +19,42 @@
 <div class="container_12 grid_12" style="position: absolute;margin-left:-480px;left:50%">
 	<div class="grid_12" style="text-align:center">
 	<h1>Visualisation des mails re&ccedil;us</h1>
-	<h4>({{owner|escape}}@mail-jetable.appspotmail.com)</h4>
-	<h6>Compte crée le : {{owdat.date}}, expire le : {{owdat.expiration}}.</h6>
+	<h4>Votre adresse mail : {{owner|escape}}@mail-jetable.appspotmail.com</h4>
+	<h6>Compte crée le : {{owdat.date}} GMT+0, expire le : {{owdat.expiration}} GMT+0.</h6>
 	</div>
 	<div id="nextMessages"></div>
-     {% if mails%}
-    {% for mail in mails %}
-	<script type="text/javascript">setlastMsgId('{{mail.id}}',false)</script>
-	<div class="grid_12 head read_{{mail.read}}" lang="{{mail.id}}">
-	<span class="de">De : {{mail.sender|escape}}</span>Sujet : {{mail.subject|escape}} <em>Re&ccedil;u &agrave; : {{ mail.date  }}</em>
-	<span class="delete"><a href="/displayContent?id={{mail.id}}&type=delete&owner={{mail.owner}}">[X]</a></span>
-	</div>
-	<div id="{{mail.id}}" style="display:none;" class="grid_12 body">
-		<input class="readSource" type="button" value="Source" />
-		<iframe style="width:100%;border-width:0px;" src="/displayContent?id={{mail.id}}&type=body"></iframe>
-	</div>
-    {% endfor %}
-    {% else %}
-    <div class="grid_3">&nbsp;</div>
-	<div class="grid_6 messageInfo">Vous n'avez pas encore re&ccedil;u de mails.<br />Vous pouvez rafraichir cette page en appuyant sur F5.<br /><br />Sinon, les donn&eacute;es sont rafraichies toutes les 5 secondes.<br /><br />Rappel : Une fois le compte expiré, vous ne serez plus en mesure de recevoir de mail!</div>
-    {%endif%}
+	<!-- On verifie que le compte est valide -->
+	{% if owdat %}
+		<!-- On affiche des mails -->
+	    {% if mails%}
+		    {% for mail in mails %}
+			<script type="text/javascript">setlastMsgId('{{mail.id}}',false)</script>
+			<div class="grid_12 head read_{{mail.read}}" lang="{{mail.id}}">
+			<span class="de">De : {{mail.sender|escape}}</span>Sujet : {{mail.subject|escape}} <em>Re&ccedil;u &agrave; : {{ mail.date  }}</em>
+			<span class="delete"><a href="/displayContent?id={{mail.id}}&type=delete&owner={{mail.owner}}">[X]</a></span>
+			</div>
+			<div id="{{mail.id}}" style="display:none;" class="grid_12 body">
+				<input class="readSource" type="button" value="Source" />
+				<iframe style="width:100%;border-width:0px;" src="/displayContent?id={{mail.id}}&type=body"></iframe>
+			</div>
+		    {% endfor %}
+		    <!-- SI y'en a pas message d'info -->
+	    {% else %}
+	    <div class="grid_3">&nbsp;</div>
+		<div class="grid_6 messageInfo">Vous n'avez pas encore re&ccedil;u de mails.<br />Vous pouvez rafraichir cette page en appuyant sur F5.<br /><br />Sinon, les donn&eacute;es sont rafraichies toutes les 15 secondes.<br /><br />Rappel : Une fois le compte expiré, vous ne serez plus en mesure de recevoir de mail!</div>
+	    {%endif%}
+    
+    	
+   	{% else %}
+   	    <!-- Le compte n'est pas valide ou a expiré -->
+    	<div class="grid_3">&nbsp;</div>
+		<div class="grid_6 messageInfo">Votre compte a expiré, veuillez recréer un compte <a href="/">ici</a>.</div>		
+   	{%endif%}
+    <!-- Fin de test d'expiration -->
     
 	<div class="grid_12">&nbsp;</div>
+	
+	<div class="grid_12" style="text-align:center;" target="_blank"><a href="/">Créer une autre adresse mail</a></div>
 	
 	<div class="grid_12 footer" style="text-align:center">&copy; 2010 Grigis Gaetan - <a href="http://blog.gaetan-grigis.eu">LoupZeur</a></div>
 	<script type="text/javascript">	
@@ -67,9 +81,24 @@
 				}
 			}
 		});
-		setTimeout("getNextMessages()",20000);
+		setTimeout("getNextMessages()",15000);
 	}
 	
+	function isAccountValid()
+	{
+		$.getJSON("/displayContent?type=expiration&owner="+owner,function(data,status){
+			if(status=="success")
+			{
+				if(data!="true")
+				{
+					$(".head").hide();
+					$(".body").hide();
+					$(".messageInfo").html('Votre compte a expiré, veuillez recréer un compte <a href="/">ici</a>.');
+				}
+			}
+		});
+		setTimeout("isAccountValid()",30000);//toutes les 30 secondes on vérifie que le compte est valide
+	}
 	function readMail(elem)
 	{
 		var id=elem.attr("lang");
@@ -110,7 +139,8 @@
 			readSource($(this))
 		});
 	});
-	setTimeout("getNextMessages()",5000);
+	setTimeout("getNextMessages()",15000);
+	isAccountValid();
 	</script>
   </body>
 </html>

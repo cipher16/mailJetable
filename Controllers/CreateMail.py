@@ -26,6 +26,7 @@ class CreateMail(webapp.RequestHandler):
         if not results:
             mailOwner = MailOwner()
             mailOwner.name = owner
+            mailOwner.ip = self.request.remote_addr
             duration = int(self.request.get('duration'))    
             mailOwner.duration = duration
             mailOwner.expiration = datetime.datetime.now() + datetime.timedelta(minutes=duration)
