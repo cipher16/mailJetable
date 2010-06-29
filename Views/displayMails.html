@@ -76,7 +76,7 @@
 						console.log(data[i][4]); //read
 						console.log(data[i][5]); //id*/
 						setlastMsgId(data[i][5],true)
-						$(".prefix_4").hide()
+						$(".messageInfo").hide()
 					}
 				}
 			}
@@ -93,7 +93,9 @@
 				{
 					$(".head").hide();
 					$(".body").hide();
+					$(".messageInfo").show()
 					$(".messageInfo").html('Votre compte a expiré, veuillez recréer un compte <a href="/">ici</a>.');
+					return "";//so we don't check anymore ....
 				}
 			}
 		});
