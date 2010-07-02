@@ -4,6 +4,7 @@
 		<script src="/Statics/js/jquery.js" type="text/javascript"></script>
 		<title>Mail Jetable</title>
 		<script type="text/javascript">
+			var accountValid=true;
 			var lastMsgId="";
 			var owner ="{{owner}}";
 			function setlastMsgId(id,force)
@@ -38,6 +39,8 @@
 				<iframe style="width:100%;border-width:0px;" src="/displayContent?id={{mail.id}}&type=body"></iframe>
 			</div>
 		    {% endfor %}
+		    <div class="grid_3">&nbsp;</div>
+		    <div class="grid_6 messageInfo" style="display:none">Vous n'avez pas encore re&ccedil;u de mails.<br />Vous pouvez rafraichir cette page en appuyant sur F5.<br /><br />Sinon, les donn&eacute;es sont rafraichies toutes les 15 secondes.<br /><br />Rappel : Une fois le compte expiré, vous ne serez plus en mesure de recevoir de mail!</div>
 		    <!-- SI y'en a pas message d'info -->
 	    {% else %}
 	    <div class="grid_3">&nbsp;</div>
@@ -58,8 +61,11 @@
 	
 	<div class="grid_12 footer" style="text-align:center">&copy; 2010 Grigis Gaetan - <a href="http://blog.gaetan-grigis.eu">LoupZeur</a></div>
 	<script type="text/javascript">	
+	//Systeme de chargement Ajax en cas de non existence du support des websockets !!! 
 	function getNextMessages()
 	{
+		if(!accountValid)
+			return
 		$.getJSON("/displayContent?id="+lastMsgId+"&type=json&owner="+owner,function(data,status){
 			if(status=="success")
 			{
@@ -86,11 +92,14 @@
 	
 	function isAccountValid()
 	{
+		if(!accountValid)
+			return
 		$.getJSON("/displayContent?type=expiration&owner="+owner,function(data,status){
 			if(status=="success")
 			{
 				if(data!="true")
 				{
+					accountValid=false;
 					$(".head").hide();
 					$(".body").hide();
 					$(".messageInfo").show()

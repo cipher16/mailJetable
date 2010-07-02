@@ -23,4 +23,8 @@ class CreateMail(webapp.RequestHandler):
             mailOwner.duration = duration
             mailOwner.expiration = datetime.datetime.now() + datetime.timedelta(minutes=duration)
             mailOwner.put()
+        elif results[0].expiration<datetime.datetime.now():
+            #reactivation d'un compte apres desactivation
+            results[0].expiration=datetime.datetime.now() + datetime.timedelta(minutes=results[0].duration)
+            results[0].put()
         self.redirect('/displayMails?mail='+owner)
